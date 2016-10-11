@@ -11,8 +11,8 @@ $input = file_get_contents('php://stdin');
 preg_match('|^To: (.*)|', $input, $matches);
 
 // Create file
-$receivers = $matches ? implode('-', (array)$matches) : time();
-$filename = $path . '/' . sprintf('%s-%s-%s.eml', date('dmY'), $receivers, microtime());
+$receivers = $matches ? implode('-', (array)$matches[1]) : time();
+$filename = $path . '/' . sprintf('%s-%s-%s.eml', date('dmY'), $receivers, time());
 
 // Place email to
 file_put_contents($filename, $input);
